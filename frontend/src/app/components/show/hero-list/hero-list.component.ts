@@ -17,9 +17,7 @@ export class HeroListComponent {
     .subscribe({
       next: (data) : void => {
         this.heroLists = data;    
-        console.log(data);
       }
       });
-     console.log(this.heroLists);
-   }
+    }
 }

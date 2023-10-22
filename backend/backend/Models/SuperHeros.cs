@@ -5,7 +5,7 @@
         /// <summary>
         /// specific automactic increment 
         /// </summary>
-        public int ID { get; set; }
+        public string ? ID { get; set; }
 
         /// <summary>
         /// Name of hero firstName

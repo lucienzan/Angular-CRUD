@@ -1,4 +1,31 @@
-
-<h1>
-hi
-</h1>
+<div class="card p-4 mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Create new hero</h3>
+        <button class="btn btn-dark" (click)="ToCancel()">Cancel</button>
+    </div>
+    <form [formGroup] = "CreateHero" (ngSubmit)="OnSubmit()">
+        <div class="form-group mb-4">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" formControlName="firstName" name="firstName">
+        </div>
+        <div class="form-group mb-4">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName" name="lastName">
+        </div>
+        <div class="form-group mb-4">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" formControlName="fullName" name="fullName">
+        </div>
+        <div class="form-group mb-4">
+            <label for="power" class="form-label">Power</label>
+            <input type="text" class="form-control" formControlName="power" name="power">
+        </div>
+        <div class="form-group mb-4">
+            <label for="place" class="form-label">Place</label>
+            <textarea name="place" class="form-control" cols="30" rows="4" formControlName="place" name="place"></textarea>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+</div>

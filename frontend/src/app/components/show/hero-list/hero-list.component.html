@@ -13,8 +13,8 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let hero of heroLists; let i = index">
+    <tbody *ngIf="heroLists.length > 0">
+        <tr *ngFor="let hero of heroLists; let i = index" >
             <td>{{ i + 1 }}</td>
             <td>{{ hero.firstName }}</td>
             <td>{{ hero.lastName }}</td>
@@ -26,5 +26,10 @@
                 <a  class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
+    </tbody>
+    <tbody *ngIf="heroLists.length == 0">
+    <tr>
+        <td colspan="7" class="text-center">There is no data available currently.</td>
+    </tr>   
     </tbody>
 </Table>

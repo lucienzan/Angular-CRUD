@@ -1,5 +1,7 @@
-﻿using backend.Models;
+﻿using backend.Data;
+using backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -7,20 +9,34 @@ namespace backend.Controllers
     [ApiController]
     public class SuperHerosController : ControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult<List<SuperHeros>>> GetSuperHeros ()
+        private readonly DataContext _context;
+        public SuperHerosController(DataContext context)
         {
-            return new List<SuperHeros>
-            {
-                new SuperHeros
-                {
-                    FirstName = "Peter",
-                    LastName = "Parker",
-                    FullName = "Spider Man",
-                    Power = "SpiderWeb",
-                    Place = "New York City"
-                } 
-            };
+            _context = context;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<SuperHeros>>> GetSuperHeros()
+        {
+            var lists = await _context.SuperHeros.ToListAsync();
+            return Ok(lists);
+        }
+
+        [HttpPost]
+        [Route("Create")]
+        public async Task<ActionResult<bool>> CreatSuperHeros(SuperHeros obj)
+        {
+            var hero = new SuperHeros();
+            var id = Guid.NewGuid().ToString();
+            hero.ID = id;
+            hero.FirstName = obj.FirstName;
+            hero.LastName = obj.LastName;
+            hero.FullName = obj.FullName;
+            hero.Power = obj.Power;
+            hero.Place = obj.Place;
+             _context.SuperHeros.Add(hero);
+            await _context.SaveChangesAsync();
+            return  true;
+        } 
     }
 }
