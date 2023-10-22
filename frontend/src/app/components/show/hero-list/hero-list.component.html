@@ -22,7 +22,7 @@
             <td>{{ hero.place }}</td>
             <td>{{ hero.power }}</td>
             <td>
-                <a  class="btn btn-sm btn-outline-warning me-2">Update</a>
+                <a  class="btn btn-sm btn-outline-warning me-2" (click)="openModal(hero)" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
                 <a  class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
@@ -33,3 +33,43 @@
     </tr>   
     </tbody>
 </Table>
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Hero's Info</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup] = "UpdateHero" (ngSubmit)="OnSubmit()" id="updateHero">
+                <div class="form-group mb-4">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" formControlName="firstName" name="firstName">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName" name="lastName">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" formControlName="fullName" name="fullName">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="power" class="form-label">Power</label>
+                    <input type="text" class="form-control" formControlName="power" name="power">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="place" class="form-label">Place</label>
+                    <textarea name="place" class="form-control" cols="30" rows="4" formControlName="place" name="place"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="updateHero">Update changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

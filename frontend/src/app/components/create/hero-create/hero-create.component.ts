@@ -51,6 +51,6 @@ export class HeroCreateComponent {
   
   OnSubmit() : void {
   let obj : SuperHero = this.CreateHero.value;
-  this.service.createSuperHeros(obj).subscribe((heros: boolean)=> console.log(heros));
+  this.service.createSuperHeros(obj).subscribe((heros: boolean)=> this.router.navigate(['']));
   }
 }

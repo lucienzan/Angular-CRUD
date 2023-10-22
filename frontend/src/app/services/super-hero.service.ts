@@ -25,4 +25,21 @@ export class SuperHeroService {
       })
   });
   }
+  
+  public getSuperHero(id : string | undefined) : Observable<any> 
+  {
+    const getHero = `${this.baseUrl}/SuperHeros/GetHero/${id}`;
+    return this.http.get<any>(getHero);
+  };
+  
+  public updateSuperHero(obj : SuperHero) : Observable<SuperHero> 
+  {
+    const updateHero = `${this.baseUrl}/SuperHeros/UpdateHero`;
+    return this.http.post<SuperHero>(updateHero, obj, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+  });
+  }
+  
 }

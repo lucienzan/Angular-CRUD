@@ -37,6 +37,42 @@ namespace backend.Controllers
              _context.SuperHeros.Add(hero);
             await _context.SaveChangesAsync();
             return  true;
-        } 
+        }
+
+        [HttpGet]
+        [Route("GetHero/{id}")]
+        public async Task<ActionResult<object>> GetSuperHero(string id)
+        {
+            var hero = await _context.SuperHeros.Where(hero => hero.ID == id).FirstOrDefaultAsync();
+            if(hero != null)
+            {
+                return new
+                {
+                    heroModel = hero,
+                    status = 200,
+                };
+            }
+                return NotFound();
+        }
+
+        [HttpPost]
+        [Route("UpdateHero")]
+        public async Task<ActionResult<SuperHeros>> UdpateSuperHero(SuperHeros model)
+        {
+            var hero = await _context.SuperHeros.Where(hero => hero.ID == model.ID).FirstOrDefaultAsync();
+
+            if (hero != null)
+            {
+                hero.FullName = model.FullName;
+                hero.FirstName = model.FirstName;
+                hero.LastName = model.LastName;
+                hero.Power = model.Power;
+                hero.Place = model.Place;
+                _context.Update(hero);
+               await _context.SaveChangesAsync();
+                return hero;
+            }
+           return BadRequest();
+        }
     }
 }
