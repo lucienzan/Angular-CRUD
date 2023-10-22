@@ -74,5 +74,19 @@ namespace backend.Controllers
             }
            return BadRequest();
         }
+
+        [HttpPost]
+        [Route("DeleteHero")]
+        public async Task<ActionResult<SuperHeros>> DeleteSuperHero(SuperHeros model)
+        {
+            var hero = await _context.SuperHeros.Where(hero => hero.ID == model.ID).FirstOrDefaultAsync();
+            if (hero != null)
+            {
+                _context.Remove(hero);
+                await _context.SaveChangesAsync();
+                return model;
+            }
+            return BadRequest();
+        }
     }
 }

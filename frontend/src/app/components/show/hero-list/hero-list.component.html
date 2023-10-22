@@ -23,7 +23,7 @@
             <td>{{ hero.power }}</td>
             <td>
                 <a  class="btn btn-sm btn-outline-warning me-2" (click)="openModal(hero)" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
-                <a  class="btn btn-sm btn-danger">Delete</a>
+                <a  class="btn btn-sm btn-danger" (click)="OnDelete(hero)">Delete</a>
             </td>
         </tr>
     </tbody>

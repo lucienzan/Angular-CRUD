@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SuperHeroService } from './../../../services/super-hero.service';
 import { SuperHero } from './../../../models/suepr-hero';
 import { FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-hero-list',
@@ -90,5 +91,30 @@ export class HeroListComponent {
           this.heroLists[index] = { ...response };
         }
       });
+    }
+    
+    OnDelete(model : SuperHero) : void {
+      Swal.fire({
+        title: 'Are you sure to delete this hero?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.heroService.deleteSuperHero(model).subscribe(() => {
+            // Remove the deleted item from the heroLists array
+            this.heroLists = this.heroLists.filter(item => item !== model);
+            
+            Swal.fire(
+              `${model.fullName} is Deleted!`,
+              'Your file has been deleted.',
+              'success'
+            );
+          });
+        }
+      })
     }
 }

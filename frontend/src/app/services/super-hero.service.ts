@@ -42,4 +42,13 @@ export class SuperHeroService {
   });
   }
   
+  public deleteSuperHero(obj : SuperHero) : Observable<SuperHero> 
+  {
+    const deleteHero = `${this.baseUrl}/SuperHeros/DeleteHero`;
+    return this.http.post<SuperHero>(deleteHero, obj, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+  });
+  }
 }
