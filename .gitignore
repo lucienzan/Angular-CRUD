@@ -40,3 +40,67 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Visual Studio specific files and directories
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+
+# Binaries and build directories
+bin/
+obj/
+
+# compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+*.suo
+*.bin
+*.vsidx
+*.lock
+*.config
+*.csproj
+*.designer.cs
+
+# NuGet package directory
+packages/
+
+# Temporary files and logs
+[Tt]emp/
+[Ll]ogs/
+
+# Configuration files with secrets (customize as needed)
+# Web.config
+App.config
+applicationhost.config
+
+# Database files (customize as needed)
+*.mdf
+*.ldf
+
+# User-generated content, media files, and large binaries
+uploads/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+
+# Node.js specific directories (if using Node.js)
+node_modules/
+
+# Backup files
+*~
+
+# Windows specific
+Thumbs.db
+
+# macOS specific
+.DS_Store

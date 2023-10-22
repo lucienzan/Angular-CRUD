@@ -12,7 +12,14 @@ export class HeroListComponent {
   constructor (private heroService : SuperHeroService){
   }
   ngOnInit() : void {
-    this.heroLists = this.heroService.getSuperHeros();
+    this.heroService
+    .getSuperHeros()
+    .subscribe({
+      next: (data) : void => {
+        this.heroLists = data;    
+        console.log(data);
+      }
+      });
      console.log(this.heroLists);
    }
 }
